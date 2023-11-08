@@ -33,7 +33,7 @@ export default function App() {
          Route should be /products/:id/edit and it should use
          the EditProduct element
          */}
-        <Route path="/products/:id" element={<ViewProductPage />} />
+        <Route path="/products/:id" element={<ViewProductPage products={products} />} />
         <Route path="/products" element={<ProductsPage products={products} />}/>
         <Route path="/" element={<Home />} />
       </Routes>
