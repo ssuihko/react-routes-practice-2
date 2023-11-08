@@ -6,12 +6,10 @@ function EditProductPage(props) {
 
   console.log({ productToUpdate });
 
-  //TODO: Write code to set the productToUpdateState
-  //with the product data from the location.
-  //
-  //Use useEffect so that when the location changes
-  //you get the product data from the location. See
-  //ViewProductPage.js to check
+  /** TODO: Write code to set the `productToUpdate` state with the product data
+   *  based on the ID that we get from the URL path parameter.
+   *  You will need to use: `props`, `useParams`, and `useEffect` to achieve this.
+   */
 
   function handleChange(event) {
     const name = event.target.name;
