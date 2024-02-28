@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 function EditProductPage(props) {
-
   const [productToUpdate, setProductToUpdate] = useState(null);
+
+  const { products, setProducts } = props;
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   console.log({ productToUpdate });
 
@@ -10,6 +14,11 @@ function EditProductPage(props) {
    *  based on the ID that we get from the URL path parameter.
    *  You will need to use: `props`, `useParams`, and `useEffect` to achieve this.
    */
+
+  useEffect(() => {
+    const pr2 = products.find((x) => parseInt(x.id) == parseInt(id));
+    setProductToUpdate(pr2);
+  }, [id, products]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -20,6 +29,22 @@ function EditProductPage(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    console.log("in submit? ");
+    const newList = products.map((x) => {
+      if (parseInt(x.id) === parseInt(id)) {
+        console.log("changed?");
+        console.log(productToUpdate);
+        return productToUpdate;
+      } else {
+        return x;
+      }
+    });
+
+    console.log("newlist?: ");
+    console.log(newList);
+    navigate("/products");
+    setProducts([...newList]);
   }
 
   if (!productToUpdate) return <div>Loading...</div>;
